@@ -1,0 +1,22 @@
+NOT(
+	(MaxNumberOfOperation( 2 by Hour ) AND TimeInterval("8:00:00" to "12:00:00")) OR
+	(MaxNumberOfOperation( 5 by Hour ) AND TimeInterval("Start" to "End") ) AND 
+	NOT WeekDaysInterval(Saturday to Sunday)
+)
+
+AND
+
+when(SessionInterval( 24 Hour by MessageContent("Content"))) do {
+	(MaxNumberOfOperation( 2 by Hour ) AND TimeInterval("8:00:00" to "12:00:00")) OR
+	(MaxNumberOfOperation( 5 by Hour ) AND TimeInterval("Start" to "End") ) AND 
+	NOT WeekDaysInterval(Saturday to Sunday)
+}
+
+AND
+	NOT WeekDaysInterval(Saturday to Sunday)
+AND 
+
+when(SessionInterval( 24 Hour by MessageContent("Content"))) do {
+	(MaxNumberOfOperation( 2 by Hour ) AND TimeInterval("8:00:00" to "12:00:00")) AND 
+	NOT WeekDaysInterval(Saturday to Sunday)
+}
